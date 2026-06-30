@@ -5,9 +5,12 @@ import "fmt"
 // MaxNum is the largest number that can be converted to words.
 const MaxNum = 999
 
+//MinNum is the smallest number that can be converted to words.
+const MinNum = -999
+
 // Convert converts the specifiednumber to words.
 func Convert(number int) (string, error) {
-	if number > MaxNum || number < 0 {
+	if number > MaxNum || number < MinNum {
 		return "", fmt.Errorf("can only convert numbers between %v and %v\n", 0, MaxNum)
 	}
 	if number == 0 {
@@ -50,6 +53,11 @@ func Convert(number int) (string, error) {
 
 	result := ""
 
+	if number < 0 {
+		result += "minus "
+		number = number * -1
+	}
+
 	if number > 99 {
 		hundredindex := number / 100
 		result += units[hundredindex] + " hundred"
@@ -62,9 +70,6 @@ func Convert(number int) (string, error) {
 	}
 
 	if number > 19 {
-		if result != "" {
-			result += " "
-		}
 		tensindex := number/10 - 2
 		result = result + tens[tensindex]
 
