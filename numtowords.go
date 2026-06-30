@@ -1,11 +1,14 @@
 package numtowords
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 // MaxNum is the largest number that can be converted to words.
 const MaxNum = 999
 
-//MinNum is the smallest number that can be converted to words.
+// MinNum is the smallest number that can be converted to words.
 const MinNum = -999
 
 // Convert converts the specifiednumber to words.
@@ -55,7 +58,7 @@ func Convert(number int) (string, error) {
 
 	if number < 0 {
 		result += "minus "
-		number = number * -1
+		number = int(math.Abs(float64(number)))
 	}
 
 	if number > 99 {
