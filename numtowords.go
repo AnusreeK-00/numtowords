@@ -2,7 +2,6 @@ package numtowords
 
 import (
 	"fmt"
-	"math"
 )
 
 // MaxNum is the largest number that can be converted to words.
@@ -58,7 +57,7 @@ func Convert(number int) (string, error) {
 
 	if number < 0 {
 		result += "minus "
-		number = int(math.Abs(float64(number)))
+		number = number * -1
 	}
 
 	if number > 99 {
